@@ -1,51 +1,50 @@
-# Google Calendar Event Extractor
+# AJ/ADP Automation
 
-This Python script allows you to extract events from your Google Calendar for the current day, including event color information.
+AJ/ADP Automation is a Python-based tool designed to automate the process of fetching, filtering, and processing event data from Google Calendar. It allows users to dynamically select dates for event retrieval, apply custom color mappings to event types, and perform various data wrangling tasks such as consolidating event durations and categorizing events based on custom criteria.
 
-## Setup Instructions
+## Features
 
-### Required Python Packages
+- Fetch events from Google Calendar for specific or current dates.
+- Apply custom color mappings to events for easy categorization.
+- Filter out specified events and cancellations.
+- Consolidate event durations and notes based on type.
+- Automatically handle tutor-specific event formatting and notes.
+- Summarize total hours spent per event type.
 
-- [google-auth](https://pypi.org/project/google-auth/)
-- [google-auth-oauthlib](https://pypi.org/project/google-auth-oauthlib/)
-- [google-auth-httplib2](https://pypi.org/project/google-auth-httplib2/)
-- [google-api-python-client](https://pypi.org/project/google-api-python-client/)
-- pytz
+## Installation
+
+### Clone the Repository
+
+Clone the repository to your local machine and navigate into the project directory.
+
+### Set Up a Virtual Environment
+
+Create and activate a virtual environment for the project.
+
+### Install Dependencies
+
+Install the necessary Python dependencies:
 - pandas
+- pytz
+- google-api-python-client
+- google-httplib2
+- google-oauthlib
 
-### Step 1: Google Cloud Project and API Configuration
+These can be installed using pip.
 
-1. **Create a Google Cloud Project:**
-   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-   - Create a new project.
+### Google Calendar API Credentials
 
-2. **Enable the Google Calendar API:**
-   - In the navigation menu, go to `APIs & Services > Dashboard`.
-   - Click `+ ENABLE APIS AND SERVICES`.
-   - Search for `Google Calendar API` and enable it for your project.
+Enable the Google Calendar API and download your `credentials.json` file to the project root, following Google's Python Quickstart guide.
 
-3. **Configure OAuth Consent Screen:**
-   - In the Google Cloud Console, go to `APIs & Services > OAuth consent screen`.
-   - Set up the consent screen that will be shown to your users.
+## Usage
 
-4. **Create Credentials:**
-   - In the `Credentials` section, click `Create credentials` and select `OAuth client ID`.
-   - Download the JSON file, which contains your client ID and secret.
-
-### Step 2: Running the Script
-
-1. **Place Your Credentials:**
-   - Rename your downloaded JSON file to `credentials.json` and place it in the root directory of this project.
-
-2. **Installation:**
-   - Install the required Python packages by running `pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client`.
-
-3. **Running the Script:**
-   - Execute `main.py` to start fetching events for the current day from your Google Calendar.
+1. Configuration: Ensure `credentials.json` is in the project root. Customize `color_mapping.txt` and `ignore_events.txt` as needed.
+2. Running the Script: Execute the script and follow the on-screen prompts to select the desired date and input the tutor's name.
+3. View Processed Events: The script outputs the processed events directly to the terminal.
 
 ## Project Structure
 
-- All functional scripts are stored under the `modules` folder in the root directory.
-- Separate `.py` scripts for authentication and fetching events are included and imported into `main.py`.
-
-Please follow these instructions carefully to ensure the script works correctly.
+- `main.py`: Entry point, handling user inputs and coordinating the processing.
+- `modules/`: Contains all modular scripts used in the project, including authentication, event fetching, color mapping, and data processing.
+- `color_mapping.txt`: Defines custom mappings from event colors to types.
+- `ignore_events.txt`: Lists event titles to be excluded from processing.
