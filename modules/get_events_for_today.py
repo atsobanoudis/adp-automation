@@ -1,17 +1,15 @@
-from googleapiclient.discovery import build
 from datetime import datetime, timedelta
 from .fetch_color_definitions import fetch_color_definitions
 import pytz
 
-def get_events_for_today(credentials):
+def get_events_for_today(service):
     tz = pytz.timezone('America/Los_Angeles')
     now = datetime.now(tz)
     start_of_day = datetime(now.year, now.month, now.day, 0, 0, 0, tzinfo=tz).isoformat()
     end_of_day = datetime(now.year, now.month, now.day, 23, 59, 59, tzinfo=tz).isoformat()
-    service = build('calendar', 'v3', credentials=credentials)
 
     # Fetch color definitions
-    event_colors = fetch_color_definitions(credentials)
+    event_colors = fetch_color_definitions(service)
 
     print('Getting all events for today')
     events_result = service.events().list(

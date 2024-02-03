@@ -11,6 +11,7 @@ This Python script allows you to extract events from your Google Calendar for th
 - [google-auth-httplib2](https://pypi.org/project/google-auth-httplib2/)
 - [google-api-python-client](https://pypi.org/project/google-api-python-client/)
 - pytz
+- pandas
 
 ### Step 1: Google Cloud Project and API Configuration
 
