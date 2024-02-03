@@ -9,15 +9,8 @@ def main():
     service = build('calendar', 'v3', credentials=creds)
 
     timezone = load_timezone()
-    events = get_events_for_today(service, timezone)
-
-    df = pd.DataFrame(events)
-    # Convert start and end times to datetime, then calculate duration in hours
-    df['start'] = pd.to_datetime(df['start'])
-    df['end'] = pd.to_datetime(df['end'])
-    df['duration'] = (df['end'] - df['start']).dt.total_seconds() / 3600  # Duration in decimal hours
-    
-    print(df)
+    df_events_today = get_events_for_today(service, timezone)
+    print(df_events_today)
 
 if __name__ == '__main__':
     main()
