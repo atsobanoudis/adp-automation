@@ -6,7 +6,20 @@ from modules.authenticate_google_calendar import authenticate_google_calendar
 from modules.get_events import get_events
 from modules.color_map import update_df_with_color_mapping
 from modules.timezone import load_timezone
+from modules.data_wrangler import data_wrangler
 
+# Prompt tutor name for ADP notes
+def prompt_for_tutor_name(filepath='tutor_name.txt'):
+    try:
+        with open(filepath, 'r') as file:
+            tutor_name = file.read().strip()
+    except FileNotFoundError:
+        tutor_name = input("Enter your first and last name: ").strip()
+        with open(filepath, 'w') as file:
+            file.write(tutor_name)
+    return tutor_name
+
+# Prompt for desired date
 def prompt_for_date():
     system = platform.system()
     if system == 'Windows':
@@ -65,6 +78,7 @@ def main():
     tz = pytz.timezone(timezone)
 
     # Prompt user for date choice and adjust time parameters
+    tutor_name = prompt_for_tutor_name()
     user_date = prompt_for_date()
     start_of_day = tz.localize(datetime.combine(user_date.date(), datetime.min.time())).isoformat()
     end_of_day = tz.localize(datetime.combine(user_date.date(), datetime.max.time())).isoformat()
@@ -77,6 +91,11 @@ def main():
         print(df_events_today)
     except Exception as e:
         print(f"Failed to apply color mapping: {e}")
+
+    # Manipulate the DataFrame based on additional criteria
+    df_processed = data_wrangler(df_events_today, user_date, tutor_name)
+    
+    print(df_processed)
 
 if __name__ == '__main__':
     main()
