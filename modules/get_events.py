@@ -1,14 +1,11 @@
 from datetime import datetime, timedelta
-from .fetch_color_definitions import fetch_color_definitions
 import pytz
 import pandas as pd
+from .fetch_color_definitions import fetch_color_definitions
 
-def get_events_for_today(service, timezone_str):
+
+def get_events(service, timezone_str, start_of_day, end_of_day):
     tz = pytz.timezone(timezone_str)
-    
-    now = datetime.now(tz)
-    start_of_day = datetime(now.year, now.month, now.day, 0, 0, 0, tzinfo=tz).isoformat()
-    end_of_day = datetime(now.year, now.month, now.day, 23, 59, 59, tzinfo=tz).isoformat()
 
     # Fetch color definitions
     event_colors = fetch_color_definitions(service)
