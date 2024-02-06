@@ -8,3 +8,4 @@ encryption.key
 secure_login
 Data Manipulation.ipynb
 .ipynb_checkpoints
+/modules/__pycache__
