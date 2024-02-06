@@ -27,13 +27,13 @@ Install the necessary Python dependencies:
 - pandas
 - pytz
 - google-api-python-client
-- google-httplib2
-- google-oauthlib
+- google-auth-httplib2
+- google-auth-oauthlib
 - playwright (WebKit)
 - cryptography
 
 These can be installed using pip:
-`pip install pandas pytz google-api-python-client google-httplib2 google-oauthlib playwright cryptography`
+`pip install pandas pytz google-api-python-client google-auth-oauthlib google-auth google-auth-httplib2 playwright cryptography`
 
 ### Google Calendar API Credentials
 
