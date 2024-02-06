@@ -8,6 +8,14 @@ import platform  # Import platform to detect the operating system
 sys.path.append('..') # Adjust the path accordingly if your main.py is in a different directory
 from .secure_login import load_login_details, save_login_details
 
+def launch_browser():
+    if platform.system() == "Darwin":  # macOS
+        browser = playwright.webkit.launch(headless=False)
+    else:  # Windows or other OS -> use *local installation of Chrome*
+        with playwright.sync_playwright() as p:
+            browser = p.chromium.launch(headless=False)
+    return browser
+
 def adp_login(page, user_id, password):
     """
     Handles the login process to ADP
@@ -75,7 +83,7 @@ def adp_filler(page, formatted_date):
     frame.locator('text="Find"').click()
     time.sleep(random.uniform(10, 20))
 
-def run(playwright, user_date):
+def run(user_date):
     user_id, password = load_login_details()
     if not user_id or not password:
         print("No saved login details found. Please enter your login information.")
@@ -85,11 +93,8 @@ def run(playwright, user_date):
 
     formatted_date = user_date.strftime("%m/%d/%Y")
 
-    # if mac -> use safari, else -> chrome
-    if platform.system() == "Darwin":  # macOS
-        browser = playwright.webkit.launch(headless=False)
-    else:  # Windows or other OS
-        browser = playwright.chromium.launch(headless=False)
+    # OS dependent browsers
+    browser = launch_browser()
     context = browser.new_context()
     page = context.new_page()
 

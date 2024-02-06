@@ -102,9 +102,9 @@ def main():
     print(df_adp_format)
 
     # Run the ADP filler script
-    #from playwright.sync_api import sync_playwright
-    #with sync_playwright() as playwright:
-    #    run_adp_filler(playwright, user_date)
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as playwright:
+        run_adp_filler(playwright, user_date)
     
     
 
