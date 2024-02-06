@@ -85,7 +85,11 @@ def run(playwright, user_date):
 
     formatted_date = user_date.strftime("%m/%d/%Y")
 
-    browser = playwright.webkit.launch(headless=False)
+    # if mac -> use safari, else -> chrome
+    if platform.system() == "Darwin":  # macOS
+        browser = playwright.webkit.launch(headless=False)
+    else:  # Windows or other OS
+        browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
 
