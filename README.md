@@ -32,7 +32,8 @@ Install the necessary Python dependencies:
 - playwright (WebKit)
 - cryptography
 
-These can be installed using pip.
+These can be installed using pip:
+`pip install pandas pytz google-api-python-client google-httplib2 google-oauthlib playwright cryptography`
 
 ### Google Calendar API Credentials
 
