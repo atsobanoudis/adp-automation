@@ -29,6 +29,8 @@ Install the necessary Python dependencies:
 - google-api-python-client
 - google-httplib2
 - google-oauthlib
+- playwright (WebKit)
+- cryptography
 
 These can be installed using pip.
 

@@ -102,7 +102,7 @@ def data_wrangler(df, user_date, tutor_name):
     verify_dates(df, user_date)
 
     # Remove specified columns
-    df.drop(['date', 'start', 'end'], axis=1, inplace=True)
+    df.drop(['start', 'end'], axis=1, inplace=True)
 
     # Insert 'note' column
     df.insert(len(df.columns), 'note', np.nan)

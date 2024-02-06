@@ -4,3 +4,7 @@ token.pickle
 user_timezone.txt
 tutor_name.txt
 /user_data
+encryption.key
+secure_login
+Data Manipulation.ipynb
+.ipynb_checkpoints
