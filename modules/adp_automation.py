@@ -171,12 +171,22 @@ def adp_filler(page, formatted_date, df):
 
     # Confirming save
     try:
-        # Wait for the success message to appear within the iframe for up to 5 minutes (300 seconds)
-        frame.wait_for_selector("text='Operation Successful.'", timeout=300000)  # Timeout in milliseconds
-        print("Operation was successful.")
-    except Exception:
-        print("Did not see the 'Operation Successful.' message. Manual intervention may be required.")
-        time.sleep(300)  # Wait for 5 minutes to allow for manual intervention 
+        # Wait for either the success message or the error message, whichever comes first
+        success_selector = "text='Operation Successful.'"
+        error_selector = "text='Error Saving Employee'"
+        page.wait_for_selector(f"{success_selector}, {error_selector}", timeout=300000)  # Adjust timeout as needed
+        
+        # After waiting, check which message is present
+        if page.locator(success_selector).count() > 0:
+            print("Operation was successful.")
+        elif page.locator(error_selector).count() > 0:
+            print("Error Saving Employee. Manual intervention may be required.")
+        else:
+            print("Unexpected state: neither success nor error message found.")
+        
+    except Exception as e:
+        print(f"An error occurred while waiting for operation completion: {e}")
+        time.sleep(300)  # Wait for 5 minutes to allow for manual intervention
     
 def adp_automation(user_date, df):
     user_id, password = load_login_details()
