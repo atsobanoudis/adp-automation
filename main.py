@@ -8,7 +8,7 @@ from modules.color_map import update_df_with_color_mapping
 from modules.timezone import load_timezone
 from modules.data_wrangler import data_wrangler
 from modules.adp_format_data import apply_mappings
-from modules.adp_automation import run as run_adp_filler
+from modules.adp_automation import adp_automation
 
 # Prompt tutor name for ADP notes
 def prompt_for_tutor_name(filepath='tutor_name.txt'):
@@ -102,9 +102,7 @@ def main():
     print(df_adp_format)
 
     # Run the ADP filler script
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as playwright:
-        run_adp_filler(playwright, user_date)
+    adp_automation(user_date)
     
     
 

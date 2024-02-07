@@ -9,6 +9,7 @@ sys.path.append('..') # Adjust the path accordingly if your main.py is in a diff
 from .secure_login import load_login_details, save_login_details
 
 def launch_browser():
+    playwright = sync_playwright().start()
     if platform.system() == "Darwin":  # macOS
         browser = playwright.webkit.launch(headless=False)
     else:  # Windows or other OS -> use *local installation of Chrome*
@@ -83,7 +84,7 @@ def adp_filler(page, formatted_date):
     frame.locator('text="Find"').click()
     time.sleep(random.uniform(10, 20))
 
-def run(user_date):
+def adp_automation(user_date):
     user_id, password = load_login_details()
     if not user_id or not password:
         print("No saved login details found. Please enter your login information.")
@@ -103,7 +104,3 @@ def run(user_date):
 
     context.close()
     browser.close()
-
-if __name__ == '__main__':
-    with sync_playwright() as playwright:
-        run(playwright)
