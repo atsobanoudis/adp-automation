@@ -1,3 +1,3 @@
-admin,admin-tutor admin-trn,000000001,ADTRN,ADTT,ADMIN,No
-break,ADMIN BREAK,000000001,ADBRK,ADMB,ADMIN,No
+admin,admin-tutor admin-trn,Admin,ADTRN,ADTT,ADMIN,No
+break,ADMIN BREAK,Admin,ADBRK,ADMB,ADMIN,No
 tutor,tutoring acad-office,,ACADO,,,Yes

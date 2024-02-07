@@ -102,7 +102,7 @@ def main():
     print(df_adp_format)
 
     # Run the ADP filler script
-    adp_automation(user_date)
+    adp_automation(user_date, df_adp_format)
     
     
 
