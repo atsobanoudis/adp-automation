@@ -49,12 +49,14 @@ def consolidate_admin(df):
 
     # Remove old 'admin' rows and append consolidated info
     df = df[df['type'] != 'admin']
-    consolidated_admin_row = pd.DataFrame({
-        'duration': [total_duration], 
-        'note': [notes], 
-        'type': ['admin']
-    })
-    df = pd.concat([df, consolidated_admin_row], ignore_index=True)
+    # Only append the consolidated admin row if there's a non-zero duration to report
+    if total_duration > 0:
+        consolidated_admin_row = pd.DataFrame({
+            'duration': [total_duration], 
+            'note': [notes], 
+            'type': ['admin']
+        })
+        df = pd.concat([df, consolidated_admin_row], ignore_index=True)
     
     return df
 
