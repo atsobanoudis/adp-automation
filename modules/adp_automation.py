@@ -21,7 +21,7 @@ def adp_login(page, user_id, password):
     Handles the login process to ADP
     """
     page.goto("https://workforcenow.adp.com/")
-    page.locator("[aria-label='Enter your User I-D']").type(user_id, delay=random.randint(60, 120))
+    page.locator("[aria-label='Enter your User I-D']").type(user_id, delay=random.randint(25, 75))
     time.sleep(random.uniform(1, 2))
     
     if page.locator("[aria-label='Enter your password']").count() == 0:
@@ -29,7 +29,7 @@ def adp_login(page, user_id, password):
     time.sleep(random.uniform(1, 2))
 
     # Assuming correction for the selector
-    page.locator("[aria-label='Enter your password']").type(password, delay=random.randint(60, 120))
+    page.locator("[aria-label='Enter your password']").type(password, delay=random.randint(25, 75))
     time.sleep(random.uniform(1, 2))
     page.locator("[aria-label='Enter your password']").press("Enter")
 
@@ -207,4 +207,3 @@ def adp_automation(user_date, df):
         adp_filler(page, formatted_date, df)
 
     context.close()
-    browser.close()
